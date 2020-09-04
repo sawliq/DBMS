@@ -1,0 +1,9 @@
+create table test(Usn varchar(20) primary key, Name varchar(10), PhoneNumber integer(10), Branch varchar(40));    //Schema SQL
+insert into test values('4mt18cs082','salik',984516245, 'cs');
+insert into test values('4mt18cs086','rahul',984576214, 'cs');
+insert into test values('4mt18me88','deepak',986816245, 'me');
+insert into test values('4mt18ec099','preet',981516555, 'ec');
+insert into test values('4mt18is100','salik',989516245, 'is');                                                                                                         
+
+
+select * from test where Branch='cs';  //Query SQL
