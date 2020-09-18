@@ -1,0 +1,6 @@
+create table Publisher(Name varchar(30) ,Address varchar(30),Phone integer,primary key(Name));
+create table Book(Book_id integer,Title varchar(30),Publisher_name varchar(30),Pub_year integer,primary key(Book_id),foreign key(Publisher_name)references Publisher(Name));
+create table Book_author(Book_id integer,Author_name varchar(30),primary key (Book_id));
+ create table Library_program(Programme_id integer,Programme_name varchar(30),Address varchar(30),primary key(Programme_id));
+create table Book_copies(Book_id integer,Programme_id integer,No_of_copies integer,primary key (Book_id),foreign key(Book_id) references Book(Book_id),foreign key(Programme_id)references Library_program(Programme_id));
+create table Book_lending(Book_id integer,Programme_id integer,Card_no integer,Date_out integer,Due_date integer,foreign key(Book_id) references Book(Book_id),foreign key(Programme_id) references Library_program(Programme_id));
