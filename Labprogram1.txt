@@ -14,21 +14,25 @@ insert into Publisher values('Mcgraw','Bangalore',9696500001);
     insert into Book values(30,'FLAT','SAM Pub',2019);
     insert into Book values(40,'BDA','IOP',2018);
     insert into Book values(50,'MP','IEEE',2020);
+    
     insert into Book_author values(10,'Andrew');
     insert into Book_author values(20,'Raj Kumar');
     insert into Book_author values(30,'Samual');
     insert into Book_author values(40,'Padma');
     insert into Book_author values(50,'Guru');
+    
     insert into Library_program values(100,'Main Building','Mangalore');
     insert into Library_program values(200,'Ground Floor','Bangalore');
     insert into Library_program values(300,'1st Floor','Bangalore');
     insert into Library_program values(400,'Research Building','Udupi');
     insert into Library_program values(500,'OPD Building','Manipal');
+    
     insert into Book_copies values(10,100,20);
     insert into Book_copies values(30,100,30);
     insert into Book_copies values(10,200,5);
     insert into Book_copies values(20,300,15);
     insert into Book_copies values(40,500,7);
+    
     insert into Book_lending values(10,100,201,'2020-06-15','2020-06-25');
     insert into Book_lending values(20,200,202,'2020-07-10','2020-07-20');
     insert into Book_lending values(30,300,203,'2020-07-25','2020-07-30');
