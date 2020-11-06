@@ -60,23 +60,8 @@ query sql
 from book B,bookauthor BA,bookcopies BC
 where B.book_id=BA.book_id and BC.book_id=B.book_id;
 
-2)select card_no
-from booklending
-where dateout between '2016-12-31' and '2017-07-01'
-group by card_no
-having count (card_no)>3
-
-
-3)delete from book where book_id=20;
-select  B.book_id,title, publisher_name,authorname,branch_id 
-from book B,bookauthor BA,bookcopies BC
-where B.book_id=BA.book_id and BC.book_id=B.book_id;
-
-
-
 output
 
-1)
 book_id	title	publisher_name	authorname	branch_id
 10	DBMS	     Mcgra	         Andre	        100
 30	FLAT	     SAM Pub	       Samuel	        100
@@ -84,11 +69,28 @@ book_id	title	publisher_name	authorname	branch_id
 20	SE	       Person	         Raj Kumar	    300
 40	BDA	       IOP	            Padma	        500
 
-2)
+
+
+2)select card_no
+from booklending
+where dateout between '2016-12-31' and '2017-07-01'
+group by card_no
+having count (card_no)>3
+
+output
+
 card_no
 202
 
-3)
+
+3)delete from book where book_id=20;
+select  B.book_id,title, publisher_name,authorname,branch_id 
+from book B,bookauthor BA,bookcopies BC
+where B.book_id=BA.book_id and BC.book_id=B.book_id;
+
+output
+
+
 book_id	title	publisher_name	authorname	branch_id
 10	DBMS	Mcgra	        Andre 	            100
 10	DBMS	Mcgra	        Andre	              200
