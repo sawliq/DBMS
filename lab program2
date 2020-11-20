@@ -53,7 +53,7 @@ where 1<
 5)
 delete from ORDERS
 where Salesman_id=10;
-select * from ORDERS;#displaying result
+select * from ORDERS;
 
 output:
 
