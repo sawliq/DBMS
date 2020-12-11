@@ -79,3 +79,7 @@ where  m.Dir_id=d.Dir_id and d.Dir_Name='Hitchcock';
 Mov_Title
 rebecca
 the birds
+
+2) select * from
+movies m, movie_cast mc
+where m.Mov_id=mc.Mov_id and Act_id
