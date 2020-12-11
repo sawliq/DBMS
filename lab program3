@@ -1,74 +1,75 @@
-create table DIRECTOR(Dir_id varchar(8),
+create table director(Dir_id varchar(8),
                       Dir_Name varchar(25),
                       Dir_Phone varchar(12),
                       primary key (Dir_id));
-create table ACTOR(Act_id varchar(8),
+create table actor(Act_id varchar(8),
                   Act_Name varchar(80),
                   Act_Gender varchar(6),
                   primary key(Act_id));   
-create table MOVIES(Mov_id varchar(8),
+create table movies(Mov_id varchar(8),
                     Mov_Title varchar(80),
                     Mov_Year integer,
                     Mov_Lang varchar(100),
                     Dir_id varchar(8),
                     primary key(Mov_id),
-                    foreign key(Dir_id)references DIRECTOR(Dir_id));
-create table MOVIE_CAST(Act_id varchar(8),
+                    foreign key(Dir_id)references director(Dir_id));
+create table movie_cast(Act_id varchar(8),
                         Mov_id varchar(8),
                         Role varchar(80),
                         primary key(Act_id, Mov_id),
-                        foreign key(Mov_id)references MOVIES(Mov_id),
-                        foreign key(Act_id)references ACTOR(Act_id));                                                           
-create table RATING(Mov_id varchar(8),
+                        foreign key(Mov_id)references movies(Mov_id),
+                        foreign key(Act_id)references actor(Act_id));                                                           
+create table rating(Mov_id varchar(8),
                     Rev_Stars varchar(8),
                     primary key(Mov_id),
-                    foreign key(Mov_id)references MOVIES(Mov_id));                            
+                    foreign key(Mov_id)references movies(Mov_id));                            
                                                          
-insert into DIRECTOR values('123','Hitchcock','4785158');
-insert into DIRECTOR values('777','Steven Spielberg','951234'); 
-insert into DIRECTOR values('9','x','97987');  
-insert into DIRECTOR values('8','y','465456'); 
-insert into DIRECTOR values('7','madhur','313135');   
+insert into director values('123','Hitchcock','4785158');
+insert into director values('777','Steven Spielberg','951234'); 
+insert into director values('9','x','97987');  
+insert into director values('8','y','465456'); 
+insert into director values('7','madhur','313135');   
   
                                                          
-insert into ACTOR values('123e','sam','m');
-insert into ACTOR values('143r','ram','m');                           
-insert into ACTOR values('235j','bd wong','m');                           
-insert into ACTOR values('124j','laura dern','f');  
-insert into ACTOR values('145o','carl','m');        
-insert into ACTOR values('147g','peter','m');
-insert into ACTOR values('44m','aa','m');
-insert into ACTOR values('55uu','hh','m'); 
-insert into ACTOR values('87dd','oo','f');                            
-insert into ACTOR values('21gf','iii','f');                                                         
-insert into MOVIES values('99q','the birds','1963','eng','123');    
-insert into MOVIES values('457q','rebecca','1940','eng','123');    
-insert into MOVIES values('711o','jaws','1945','eng','777');               
-insert into MOVIES values('568u','jurasic park','1993','eng','777');
-insert into MOVIES values('99pp','joker','2019','eng','9');
-insert into MOVIES values('88uu','coco','2017','eng','8'); 
-insert into MOVIES values('44xx','fashion','2008','eng','7');
+insert into actor values('123e','sam','m');
+insert into actor values('143r','ram','m');                           
+insert into actor values('235j','bd wong','m');                           
+insert into actor values('124j','laura dern','f');  
+insert into actor values('145o','carl','m');        
+insert into actor values('147g','peter','m');
+insert into actor values('44m','aa','m');
+insert into actor values('55uu','hh','m'); 
+insert into actor values('87dd','oo','f');                            
+insert into actor values('21gf','iii','f');                                                         
+insert into movies values('99q','the birds','1963','eng','123');    
+insert into movies values('457q','rebecca','1940','eng','123');    
+insert into movies values('711o','jaws','1945','eng','777');               
+insert into movies values('568u','jurasic park','1993','eng','777');
+insert into movies values('99pp','joker','2019','eng','9');
+insert into movies values('88uu','coco','2017','eng','8'); 
+insert into movies values('44xx','fashion','2008','eng','7');
 
-insert into MOVIE_CAST values('123e','99q','tailor');
-insert into MOVIE_CAST values('143r','457q','hunter'); 
-insert into MOVIE_CAST values('235j','568u','doctor');
-insert into MOVIE_CAST values('124j','568u','researcher');
-insert into MOVIE_CAST values('147g','711o','student'); 
-insert into MOVIE_CAST values('123e','711o','spy');
-insert into MOVIE_CAST values('145o','568u','teacher');
-insert into MOVIE_CAST values('44m','99pp','model');
-insert into MOVIE_CAST values('55uu','88uu','spy');
-insert into MOVIE_CAST values('87dd','44xx','cat'); 
-insert into MOVIE_CAST values('21gf','44xx','ghost');  
+insert into movie_cast values('123e','99q','tailor');
+insert into movie_cast values('143r','457q','hunter'); 
+insert into movie_cast values('235j','568u','doctor');
+insert into movie_cast values('124j','568u','researcher');
+insert into movie_cast values('147g','711o','student'); 
+insert into movie_cast values('123e','711o','spy');
+insert into movie_cast values('145o','568u','teacher');
+insert into movie_cast values('44m','99pp','model');
+insert into movie_cast values('55uu','88uu','spy');
+insert into movie_cast values('87dd','44xx','cat'); 
+insert into movie_cast values('21gf','44xx','ghost');  
                                                          
                                                          
-insert into  RATING values('99q','4');
-insert into  RATING values('457q','4'); 
-insert into  RATING values('711o','3'); 
-insert into  RATING values('568u','4'); 
-insert into  RATING values('99pp','0'); 
-insert into  RATING values('88uu','4'); 
-insert into  RATING values('44xx','5');   
+insert into  rating values('99q','4');
+insert into  rating values('457q','4'); 
+insert into  rating values('711o','3'); 
+insert into  rating values('568u','4'); 
+insert into  rating values('99pp','0'); 
+insert into  rating values('88uu','4'); 
+insert into  rating values('44xx','5');   
+
 
 
 1)select Mov_Title
