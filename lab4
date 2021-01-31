@@ -1,0 +1,204 @@
+create table STUDENT(usn varchar(20) primary key,sname varchar(20),address varchar(20),phone long,
+gender varchar(10));
+
+create table SEMSEC(ssid integer primary key,sem integer,sec varchar(5));
+
+create table CLASS(usn varchar(20) primary key,ssid integer,foreign key(usn) references STUDENT(usn),
+foreign key(ssid) references SEMSEC(ssid));
+
+create table COURSE(subcode varchar(20) primary key,title varchar(20),sem integer,credits integer);
+
+create table IAMARKS(usn varchar(20),subcode varchar(20),ssid integer,test1 integer,test2 integer,
+test3 integer,finalIA integer,primary key(usn,subcode,ssid),foreign key(usn) references STUDENT(usn),
+foreign key(subcode) references COURSE(subcode),foreign key(ssid) references SEMSEC(ssid));
+
+insert into STUDENT values('cs101','sharan','mangalore',9696500000,'male');
+insert into STUDENT values('cs102','prithi','bangalore',9896504400,'female');
+insert into STUDENT values('cs103','sahana','mysore',9486500550,'female');
+insert into STUDENT values('cs104','shan','mangalore',9696888765,'male');
+insert into STUDENT values('cs105','kiran','bangalore',9696558765,'male');
+
+insert into SEMSEC values(111,8,'A');
+insert into SEMSEC values(112,4,'C');
+insert into SEMSEC values(113,4,'C');
+insert into SEMSEC values(114,5,'A');
+insert into SEMSEC values(115,8,'B');
+
+insert into CLASS values('cs101',113);
+insert into CLASS values('cs102',115);
+insert into CLASS values('cs103',111);
+insert into CLASS values('cs104',112);
+insert into CLASS values('cs105',114);
+
+insert into COURSE values('18cs51','atc',5,3);
+insert into COURSE values('18cs52','dbms',5,4);
+insert into COURSE values('18cs53','up',5,2);
+insert into COURSE values('18cs54','me',5,3);
+insert into COURSE values('18cs55','cns',5,4);
+
+insert into IAMARKS values('cs101','18cs51',113,15,17,18,18); 
+insert into IAMARKS values('cs101','18cs52',113,10,13,8,12);
+insert into IAMARKS values('cs101','18cs53',113,15,10,10,13);
+insert into IAMARKS values('cs101','18cs54',113,9,11,14,null);
+insert into IAMARKS values('cs101','18cs55',113,9,13,16,15);
+insert into IAMARKS values('cs103','18cs51',111,14,15,16,null);
+insert into IAMARKS values('cs103','18cs52',111,20,16,12,18);
+insert into IAMARKS values('cs103','18cs53',111,18,12,11,15);
+insert into IAMARKS values('cs103','18cs54',111,15,15,10,15);
+insert into IAMARKS values('cs103','18cs55',111,19,16,10,null);
+
+
+
+select * from STUDENT;
+
+| usn   | sname  | address   | phone      | gender |
+| ----- | ------ | --------- | ---------- | ------ |
+| cs101 | sharan | mangalore | 9696500000 | male   |
+| cs102 | prithi | bangalore | 9896504400 | female |
+| cs103 | sahana | mysore    | 9486500550 | female |
+| cs104 | shan   | mangalore | 9696888765 | male   |
+| cs105 | kiran  | bangalore | 9696558765 | male   |
+
+---
+
+
+    select * from SEMSEC;
+
+| ssid | sem | sec |
+| ---- | --- | --- |
+| 111  | 8   | A   |
+| 112  | 4   | C   |
+| 113  | 4   | C   |
+| 114  | 5   | A   |
+| 115  | 8   | B   |
+
+---
+
+
+    select * from CLASS;
+
+| usn   | ssid |
+| ----- | ---- |
+| cs103 | 111  |
+| cs104 | 112  |
+| cs101 | 113  |
+| cs105 | 114  |
+| cs102 | 115  |
+
+---
+
+
+    select * from COURSE;
+
+| subcode | title | sem | credits |
+| ------- | ----- | --- | ------- |
+| 18cs51  | atc   | 5   | 3       |
+| 18cs52  | dbms  | 5   | 4       |
+| 18cs53  | up    | 5   | 2       |
+| 18cs54  | me    | 5   | 3       |
+| 18cs55  | cns   | 5   | 4       |
+
+---
+
+
+    select * from IAMARKS;
+
+| usn   | subcode | ssid | test1 | test2 | test3 | finalIA |
+| ----- | ------- | ---- | ----- | ----- | ----- | ------- |
+| cs101 | 18cs51  | 113  | 15    | 17    | 18    | 18      |
+| cs101 | 18cs52  | 113  | 10    | 13    | 8     | 12      |
+| cs101 | 18cs53  | 113  | 15    | 10    | 10    | 13      |
+| cs101 | 18cs54  | 113  | 9     | 11    | 14    |         |
+| cs101 | 18cs55  | 113  | 9     | 13    | 16    | 15      |
+| cs103 | 18cs51  | 111  | 14    | 15    | 16    |         |
+| cs103 | 18cs52  | 111  | 20    | 16    | 12    | 18      |
+| cs103 | 18cs53  | 111  | 18    | 12    | 11    | 15      |
+| cs103 | 18cs54  | 111  | 15    | 15    | 10    | 15      |
+| cs103 | 18cs55  | 111  | 19    | 16    | 10    |         |
+
+---
+
+
+
+
+**Query #1**
+
+    select * from STUDENT S,SEMSEC SS,CLASS C where S.usn=C.usn and C.ssid=SS.ssid and sem=4 and sec='C';
+
+| usn   | sname  | address   | phone      | gender | ssid | sem | sec | usn   | ssid |
+| ----- | ------ | --------- | ---------- | ------ | ---- | --- | --- | ----- | ---- |
+| cs104 | shan   | mangalore | 9696888765 | male   | 112  | 4   | C   | cs104 | 112  |
+| cs101 | sharan | mangalore | 9696500000 | male   | 113  | 4   | C   | cs101 | 113  |
+
+---
+**Query #2**
+
+    select sem,sec,gender,count(*) from STUDENT S,SEMSEC SS,CLASS C
+    where S.usn=C.usn and C.ssid=SS.ssid group by sem,sec,gender order by sem;
+
+| sem | sec | gender | count(*) |
+| --- | --- | ------ | -------- |
+| 4   | C   | male   | 2        |
+| 5   | A   | male   | 1        |
+| 8   | A   | female | 1        |
+| 8   | B   | female | 1        |
+
+---
+**Query #3**
+
+    create view Test1 as select subcode,test1 from IAMARKS where usn='cs101';
+    select * from Test1;
+
+| subcode | test1 |
+| ------- | ----- |
+| 18cs51  | 15    |
+| 18cs52  | 10    |
+| 18cs53  | 15    |
+| 18cs54  | 9     |
+| 18cs55  | 9     |
+
+---
+**Query #4**
+...
+
+[Message clipped]  View entire message
+
+4MT18CS110_Vamshikrishna
+Mon, 18 Jan, 18:09 (13 days ago)
+to me
+
+**Query #4**
+
+    update IAMARKS set finalIA=((test1+test2+test3)-least(test1,test2,test3))/2;
+    select * from IAMARKS;
+
+| usn   | subcode | ssid | test1 | test2 | test3 | finalIA |
+| ----- | ------- | ---- | ----- | ----- | ----- | ------- |
+| cs101 | 18cs51  | 113  | 15    | 17    | 18    | 18      |
+| cs101 | 18cs52  | 113  | 10    | 13    | 8     | 12      |
+| cs101 | 18cs53  | 113  | 15    | 10    | 10    | 13      |
+| cs101 | 18cs54  | 113  | 9     | 11    | 14    | 13      |
+| cs101 | 18cs55  | 113  | 9     | 13    | 16    | 15      |
+| cs103 | 18cs51  | 111  | 14    | 15    | 16    | 16      |
+| cs103 | 18cs52  | 111  | 20    | 16    | 12    | 18      |
+| cs103 | 18cs53  | 111  | 18    | 12    | 11    | 15      |
+| cs103 | 18cs54  | 111  | 15    | 15    | 10    | 15      |
+| cs103 | 18cs55  | 111  | 19    | 16    | 10    | 18      |
+
+---
+**Query #5**
+
+    select S.usn,S.sname,finalIA,(CASE 
+     WHEN finalIA>=17 and finalIA<=20 then 'Outstanding'
+     WHEN finalIA>=12 and finalIA<=17 then 'Average'
+     WHEN finalIA<12 then 'Weak'
+     END)CAT from STUDENT S,IAMARKS IA,CLASS C,SEMSEC SS where S.usn=IA.usn and S.usn=C.usn and C.ssid=SS.ssid and sem=8 and (sec='A' or sec='B' or sec='C');
+
+| usn   | sname  | finalIA | CAT         |
+| ----- | ------ | ------- | ----------- |
+| cs103 | sahana | 16      | Average     |
+| cs103 | sahana | 18      | Outstanding |
+| cs103 | sahana | 15      | Average     |
+| cs103 | sahana | 15      | Average     |
+| cs103 | sahana | 18      | Outstanding |
+© 2021 GitHub, Inc.
