@@ -75,7 +75,7 @@ create table DEPARTMENT(dno integer primary key ,dname varchar(20) ,mgrssn integ
 | 180000      | 95000       | 85000       | 90000.0000  |
 
 
-query 5
+query 4
 
 SELECT name
 FROM EMPLOYEE
